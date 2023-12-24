@@ -80,18 +80,23 @@ public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String email;
+    private String username;
     private String password;
+    private String email;
     private String roles;
-    private String userSecret;
-    private String userGpsInfo;
+    private String token;
     private BigDecimal walletBalance;
-    private Boolean registrationStatus;
-    private boolean enableOfflinePayments;
-    private LocalDateTime lastEnableOfflinePaymentsTimestamp;
-    private LocalDateTime lastDisableOfflinePaymentsTimestamp;
-    private String lastGpsLocation;
+    private String userGpsInfo;
+
+//    private Boolean registrationStatus;
+//    private boolean enableOfflinePayments;
+//    private LocalDateTime lastEnableOfflinePaymentsTimestamp;
+//    private LocalDateTime lastDisableOfflinePaymentsTimestamp;
+//    private String lastGpsLocation;
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public int getId() {
         return id;
@@ -100,10 +105,10 @@ public class UserInfo {
         this.id = id;
     }
     public String getName() {
-        return name;
+        return username;
     }
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
     public String getEmail() {
         return email;

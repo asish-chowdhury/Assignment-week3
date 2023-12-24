@@ -1,6 +1,5 @@
 package com.accolite.config;
 
-
 import com.accolite.filter.JwtAuthFilter;
 import com.accolite.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/welcome", "/auth/addNewUser", "/auth/generateToken").permitAll()
+                .requestMatchers("/auth/welcome", "/auth/addUser", "/auth/generateToken").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/auth/user/**").authenticated()
                 .and()

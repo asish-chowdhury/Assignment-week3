@@ -16,6 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/auth")
 public class UserController {
@@ -34,7 +36,7 @@ public class UserController {
         return "Welcome, this endpoint is not secure";
     }
 
-    @PostMapping("/addNewUser")
+    @PostMapping("/addUser")
     public String addNewUser(@RequestBody UserInfo userInfo) {
         return service.addUser(userInfo);
     }
@@ -67,7 +69,12 @@ public class UserController {
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            String token = jwtService.generateToken(authRequest.getUsername());
+            String username = authRequest.getUsername();
+            String token = jwtService.generateToken(username);
+//            String token = jwtService.generateToken(authRequest.getUsername());
+
+            service.updateUserToken(username, token);
+
             System.out.println(token);
             return ResponseEntity.ok(token);
         } catch (Exception e) {

@@ -19,7 +19,7 @@ public class UserInfoService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<UserInfo> userDetail = repository.findByName(username);
+        Optional<UserInfo> userDetail = repository.findByUsername(username);
 
         // Converting userDetail to UserDetails
         return userDetail.map(UserInfoDetails::new)
@@ -31,8 +31,16 @@ public class UserInfoService implements UserDetailsService {
         return "User Added Successfully";
     }
 
+    public void updateUserToken(String username, String token) {
+        Optional<UserInfo> optionalUserInfo = repository.findByUsername(username);
+        optionalUserInfo.ifPresent(userInfo -> {
+            userInfo.setToken(token);
+            repository.save(userInfo);
+        });
+    }
+
     //----
     public Optional<UserInfo> getUserByUsername(String username) {
-        return repository.findByName(username);
+        return repository.findByUsername(username);
     }
 }
