@@ -71,14 +71,11 @@ public class UserController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String username = authRequest.getUsername();
             String token = jwtService.generateToken(username);
-//            String token = jwtService.generateToken(authRequest.getUsername());
-
             service.updateUserToken(username, token);
-
             System.out.println(token);
             return ResponseEntity.ok(token);
         } catch (Exception e) {
-            e.printStackTrace(); // Log the exception details
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
@@ -104,4 +101,5 @@ public class UserController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return ResponseEntity.ok("User data for: " + username);
     }
+
 }

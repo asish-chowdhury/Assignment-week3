@@ -87,9 +87,10 @@ public class UserInfo {
     private String token;
     private BigDecimal walletBalance;
     private String userGpsInfo;
+    private Boolean registrationStatus;
 
-//    private Boolean registrationStatus;
-//    private boolean enableOfflinePayments;
+
+    //    private boolean enableOfflinePayments;
 //    private LocalDateTime lastEnableOfflinePaymentsTimestamp;
 //    private LocalDateTime lastDisableOfflinePaymentsTimestamp;
 //    private String lastGpsLocation;
@@ -127,5 +128,13 @@ public class UserInfo {
     }
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public Boolean getRegistrationStatus() {
+        return registrationStatus;
+    }
+
+    public void setRegistrationStatus(Boolean registrationStatus) {
+        this.registrationStatus = registrationStatus;
     }
 }
